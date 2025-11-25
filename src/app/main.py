@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app import models
+from app import models  # noqa: F401  # ensure models register with Base metadata
 from app.db import Base, engine
 from app.routers import auth, posts
 

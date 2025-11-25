@@ -40,4 +40,4 @@ uv run uvicorn app.main:app --app-dir src --reload
 ## Тестирование и CI
 
 - `uv run pytest -q` — интеграционные тесты с использованием FastAPI TestClient (добавлены позднее).
-- `.gitlab-ci.yml` — пайплайн будет запускать линтинг, тесты и сканирование безопасности (`bandit`, `safety`).
+- `.github/workflows/ci.yml` — GitHub Actions срабатывает на `push`/`pull_request` в `master`, выполняет `uv sync --dev`, затем шаги lint (`ruff`, `black --check`), тестирование (`pytest -q --maxfail=1`) и проверки безопасности (`bandit`, `safety`, `snyk`).

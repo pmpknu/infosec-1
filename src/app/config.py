@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     """Application settings loaded from environment variables or .env file."""
 
     app_name: str = "Infosec Lab API"
-    secret_key: str = "change-me"
+    secret_key: str = "change-me"  # noqa: S105 - default value, overridden by env
     jwt_algorithm: str = "HS256"
     access_token_expire_minutes: int = 60
     database_url: str = "sqlite:///./app.db"

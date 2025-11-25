@@ -22,7 +22,7 @@ class UserOut(UserBase):
 
 class Token(BaseModel):
     access_token: str
-    token_type: str = "bearer"
+    token_type: str = "bearer"  # noqa: S105 - not a password
 
 
 class TokenPayload(BaseModel):
