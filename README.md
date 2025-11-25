@@ -41,3 +41,13 @@ uv run uvicorn app.main:app --app-dir src --reload
 
 - `uv run pytest -q` — интеграционные тесты с использованием FastAPI TestClient (добавлены позднее).
 - `.github/workflows/ci.yml` — GitHub Actions срабатывает на `push`/`pull_request` в `master`, выполняет `uv sync --dev`, затем шаги lint (`ruff`, `black --check`), тестирование (`pytest -q --maxfail=1`) и проверки безопасности (`bandit`, `safety`, `snyk`).
+
+## Скриншоты
+
+Отчет шага SAST (safety)
+
+![sast report](./doc/img/SAST.png)
+
+Отчет шага SCA (snyk)
+
+![sast report](./doc/img/SCA.png)
