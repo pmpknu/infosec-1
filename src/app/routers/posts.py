@@ -27,9 +27,13 @@ async def create_post(
     sanitized_content = bleach.clean(post_in.content, strip=True)
 
     if not sanitized_title.strip():
-        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="Title removed by sanitizer")
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="Title removed by sanitizer"
+        )
     if not sanitized_content.strip():
-        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="Content removed by sanitizer")
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="Content removed by sanitizer"
+        )
 
     post = models.Post(
         title=sanitized_title,

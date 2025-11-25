@@ -25,7 +25,9 @@ def get_password_hash(password: str) -> str:
 
 
 def create_access_token(*, subject: str, expires_delta: timedelta | None = None) -> str:
-    expire = datetime.utcnow() + (expires_delta or timedelta(minutes=settings.access_token_expire_minutes))
+    expire = datetime.utcnow() + (
+        expires_delta or timedelta(minutes=settings.access_token_expire_minutes)
+    )
     to_encode = {"sub": subject, "exp": expire}
     return jwt.encode(to_encode, settings.secret_key, algorithm=settings.jwt_algorithm)
 
@@ -39,7 +41,9 @@ def decode_access_token(token: str) -> schemas.TokenPayload:
             raise ValueError("Missing claims")
         return schemas.TokenPayload(sub=subject, exp=exp)
     except (jwt.PyJWTError, ValueError, KeyError) as exc:  # pragma: no cover - defensive guard
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token") from exc
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token"
+        ) from exc
 
 
 async def get_current_user(
